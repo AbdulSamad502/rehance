@@ -113,7 +113,7 @@ export default function Welcome() {
         <Card className="fade-up mt-10 !p-5 text-ink">
           <h2 className="text-lg font-extrabold">Sign in</h2>
           <div className="mt-3 space-y-3">
-            <Field label="Email or mobile"><Input placeholder="priya.sharma@example.com" /></Field>
+            <Field label="Email or mobile"><Input placeholder="abdul.samad@example.com" /></Field>
             <Field label="Password"><Input type="password" placeholder="••••••••" /></Field>
           </div>
           <p className="mt-2 text-xs text-muted">Prototype: pick a demo account below. No real authentication.</p>

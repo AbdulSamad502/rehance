@@ -95,7 +95,7 @@ const patients: Patient[] = specs.map((s, i) => ({
   id: s.id, code: `GP-${1001 + i}`, name: s.name, age: s.age, sex: s.sex,
   phone: `+91 9${8000 + i * 137}${10000 + i * 913}`.slice(0, 15), email: `${s.name.toLowerCase().replace(/[^a-z]+/g, '.')}@example.com`,
   address: ['12 Lake View Road, Pune', '4B Sunrise Apts, Mumbai', '88 Gandhi Nagar, Pune', '21 Park Street, Thane', '7 Green Park, Pune', '54 Residency Rd, Pune', '9 Hill Crest, Mumbai', '30 MG Road, Pune'][i],
-  emergency: ['Meena Sharma (daughter) +91 98111 22001', 'Raj Malhotra (father) +91 98111 22002', 'Prakash Patil (husband) +91 98111 22003', 'Anita Verma (wife) +91 98111 22004', 'Yusuf Sheikh (husband) +91 98111 22005', 'Geeta Das (wife) +91 98111 22006', 'Sudeep Banerjee (father) +91 98111 22007', 'Kavita Joshi (wife) +91 98111 22008'][i],
+  emergency: ['Ayesha Samad (wife) +91 98111 22001', 'Raj Malhotra (father) +91 98111 22002', 'Prakash Patil (husband) +91 98111 22003', 'Anita Verma (wife) +91 98111 22004', 'Yusuf Sheikh (husband) +91 98111 22005', 'Geeta Das (wife) +91 98111 22006', 'Sudeep Banerjee (father) +91 98111 22007', 'Kavita Joshi (wife) +91 98111 22008'][i],
   referral: s.ref, registeredAt: d(s.regDays), therapistId: s.th, location: i % 3 === 2 ? 'GearPhys Thane' : 'GearPhys Pune (Main)',
   status: s.status ?? 'active', condition: s.cond, region: s.region, side: s.side, episodeTitle: s.ep, episodeStart: d(s.regDays),
   adminRemarks: i === 0 ? 'Prefers UPI. Daughter accompanies on Tuesdays.' : i === 7 ? 'Invite sent. Awaiting patient to join.' : '',

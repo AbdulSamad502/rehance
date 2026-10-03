@@ -73,7 +73,7 @@ C('Clinic F', 'Record payment: methods, refund, adjustment', '/physio/patients/p
 C('Clinic F', 'Billing entries (add charge)', '/physio/patients/p1?tab=billing', ['extra session', 'consultation', 'add to bill'], { role: 'owner', steps: ['Add charge'] })
 C('Clinic F', 'Receipts', '/physio/patients/p1?tab=billing', ['receipt no.', 'print / save pdf'], { role: 'owner', steps: ['Payment'] })
 
-C('Clinic G', 'Therapist working hours + leave', '/physio/schedule', ['working hours', 'mark unavailable', 'dr. ananya rao', 'dr. karan mehta'], { steps: ['Therapists'] })
+C('Clinic G', 'Therapist working hours + leave', '/physio/schedule', ['working hours', 'mark unavailable', 'dr. mohammed abdul rasheed', 'dr. karan mehta'], { steps: ['Therapists'] })
 C('Clinic G', 'Weekly schedule view', '/physio/schedule', ['mon', 'tue', 'wed'], { steps: ['Week'] })
 C('Clinic G', 'Daily workload per therapist', '/physio', ['booked'])
 
