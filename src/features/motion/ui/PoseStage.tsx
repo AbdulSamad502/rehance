@@ -7,7 +7,7 @@ import { PoseTracker, type DelegateKind, type ModelKind } from '../engine/tracke
 import type { Pose, SideChoice } from '../engine/types'
 
 export type StageSource =
-  | { kind: 'webcam'; deviceId?: string }
+  | { kind: 'webcam'; deviceId?: string; facing?: 'user' | 'environment' }
   | { kind: 'file'; url: string }
   | { kind: 'sim'; def: MovementDef; side: SideChoice; speed?: number }
 
@@ -60,7 +60,7 @@ export function PoseStage(props: Props) {
     cb.current.onStatus?.(statusRef.current)
   }
 
-  const srcKey = source.kind === 'webcam' ? `cam:${source.deviceId ?? ''}` : source.kind === 'file' ? `file:${source.url}` : `sim:${source.def.id}:${source.side}`
+  const srcKey = source.kind === 'webcam' ? `cam:${source.deviceId ?? ''}:${source.facing ?? 'user'}` : source.kind === 'file' ? `file:${source.url}` : `sim:${source.def.id}:${source.side}`
 
   // ---- Load the model (not needed for the simulated source)
   useEffect(() => {
@@ -98,7 +98,7 @@ export function PoseStage(props: Props) {
         try {
           if (!navigator.mediaDevices?.getUserMedia) throw new Error('This browser does not support camera access (needs https or localhost).')
           stream = await navigator.mediaDevices.getUserMedia({
-            video: { deviceId: source.deviceId ? { exact: source.deviceId } : undefined, width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'user' },
+            video: { deviceId: source.deviceId ? { exact: source.deviceId } : undefined, width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: source.deviceId ? undefined : { ideal: source.facing ?? 'user' } },
             audio: false,
           })
           if (dead) { stream.getTracks().forEach((t) => t.stop()); return }
@@ -158,7 +158,7 @@ export function PoseStage(props: Props) {
       }
 
       drawPose(ctx, lastPose, canvas.width, canvas.height, {
-        mirror: source.kind === 'webcam' ? cb.current.mirror ?? true : source.kind === 'sim' ? false : false,
+        mirror: source.kind === 'webcam' ? (source.facing === 'environment' ? false : cb.current.mirror ?? true) : source.kind === 'sim' ? false : false,
         focus: focusRef.current,
         dim: cb.current.dim,
       })
@@ -186,7 +186,7 @@ export function PoseStage(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [srcKey])
 
-  const mirrorVideo = source.kind === 'webcam' && mirror
+  const mirrorVideo = source.kind === 'webcam' && mirror && source.facing !== 'environment'
 
   return (
     <div className={`relative overflow-hidden rounded-3xl bg-[#0b1b2b] ${className ?? ''}`} style={{ aspectRatio: `${size.w} / ${size.h}` }}>

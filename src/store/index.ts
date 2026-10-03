@@ -9,7 +9,7 @@ import { unavailableReason } from '../lib/derive'
 import { fmtDate, fmtTime, todayISO, uid } from '../lib/utils'
 
 // Bump when the seed data or its shape changes, so cached demo data is replaced on next visit.
-export const STORE_KEY = 'gearphys-demo-v4'
+export const STORE_KEY = 'gearphys-demo-v5'
 
 export interface UI {
   physioRole: PhysioRole
@@ -35,7 +35,7 @@ function loadUI(): UI {
 export const ACTORS: Record<PhysioRole, string> = {
   owner: 'Rohit Kulkarni (Owner)',
   receptionist: 'Meera Nair (Reception)',
-  physio: 'Dr. Ananya Rao',
+  physio: 'Dr. Mohammed Abdul Rasheed',
 }
 
 interface Actions {

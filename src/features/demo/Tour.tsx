@@ -11,12 +11,12 @@ export const TOUR: Step[] = [
   { title: 'The clinic day at a glance', text: 'The physio workspace merges front-desk operations and clinical care. Today\'s schedule, collections, alerts and the AI review queue are all on one screen.', route: '/physio', as: 'physio' },
   { title: 'Register a patient and send the app invite', text: 'Reception registers a patient and sends an invite code. Deepak Joshi was just registered. Open his profile to see the invite (code GP-4821).', route: '/physio/patients', as: 'physio' },
   { title: 'The patient joins the app', text: 'On the patient side, Deepak enters the invite code, verifies with a one-time code and gives consent. Use the "Join with invite code" option with GP-4821.', route: '/patient', as: 'patient', patient: null },
-  { title: 'Priya\'s home exercises', text: 'Priya (post knee replacement) sees exactly what her therapist assigned. Heel slides, squats and sit-to-stands can be tracked by the camera.', route: '/patient/exercises', as: 'patient', patient: 'p1' },
+  { title: 'Abdul\'s home exercises', text: 'Abdul (post knee replacement) sees exactly what his therapist assigned. Heel slides, squats and sit-to-stands can be tracked by the camera.', route: '/patient/exercises', as: 'patient', patient: 'p1' },
   { title: 'Camera-guided exercise', text: 'Open "Heel slides", then Start with camera. The same pose engine counts reps and coaches form. No diagnosis, just guidance. Choose the simulated option if no camera is handy.', route: '/patient/exercises', as: 'patient', patient: 'p1' },
-  { title: 'Results flow back to the physio', text: 'Back in the clinic, the physio sees Priya\'s symptom check-in, her exercise adherence and a home motion analysis waiting for review.', route: '/physio', as: 'physio' },
+  { title: 'Results flow back to the physio', text: 'Back in the clinic, the physio sees Abdul\'s symptom check-in, his exercise adherence and a home motion analysis waiting for review.', route: '/physio', as: 'physio' },
   { title: 'Real AI Motion Analysis', text: 'Start a new analysis: pick the patient and movement, check camera positioning, then capture. Joint angles, rep counts, symmetry and quality are computed live from the webcam.', route: '/physio/motion/new', as: 'physio' },
   { title: 'Review and approve', text: 'The therapist compares the AI estimate with their manual measurement, adds notes, and approves. Only approved results reach the patient.', route: '/physio/motion/review/m5', as: 'physio' },
-  { title: 'The patient sees approved feedback', text: 'Priya\'s progress screen now shows her approved knee flexion in plain language, tracked against her goal.', route: '/patient/progress', as: 'patient', patient: 'p1' },
+  { title: 'The patient sees approved feedback', text: 'Abdul\'s progress screen now shows his approved knee flexion in plain language, tracked against his goal.', route: '/patient/progress', as: 'patient', patient: 'p1' },
   { title: 'That is the loop', text: 'Clinic operations, clinical decisions and patient engagement, connected. Explore freely, or reset the demo from the home page.', route: '/', as: 'none' },
 ]
 

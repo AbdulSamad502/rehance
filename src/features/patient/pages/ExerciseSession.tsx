@@ -28,6 +28,7 @@ export default function ExerciseSession() {
 
   const [mode, setMode] = useState<Mode>('detail')
   const [src, setSrc] = useState<'webcam' | 'sim'>('webcam')
+  const [facing, setFacing] = useState<'user' | 'environment'>('user')
   const [counting, setCounting] = useState(false)
   const [ready, setReady] = useState(false)
   const [live, setLive] = useState<LiveState | null>(null)
@@ -141,7 +142,7 @@ export default function ExerciseSession() {
   if (mode === 'camera' && def) {
     return (
       <Screen title={ex.name} back={false}>
-        <PoseStage source={src === 'webcam' ? { kind: 'webcam' } : { kind: 'sim', def, side: 'Right', speed: 1.7 }} active mirror focus={def.joint ? [{ joint: def.joint, side: 'R' }] : undefined} onPose={onPose} onStatus={setStatus} className="!rounded-3xl">
+        <PoseStage source={src === 'webcam' ? { kind: 'webcam', facing } : { kind: 'sim', def, side: 'Right', speed: 1.7 }} active mirror={facing === 'user'} focus={def.joint ? [{ joint: def.joint, side: 'R' }] : undefined} onPose={onPose} onStatus={setStatus} className="!rounded-3xl">
           <div className="pointer-events-none absolute inset-0">
             {counting && (
               <div className="absolute left-3 top-12 rounded-2xl bg-black/55 px-4 py-2 text-white backdrop-blur">
@@ -156,6 +157,7 @@ export default function ExerciseSession() {
         {!counting ? (
           <>
             <Segmented options={['Camera', 'Demo skeleton'] as const} value={src === 'webcam' ? 'Camera' : 'Demo skeleton'} onChange={(v) => startCamera(v === 'Camera' ? 'webcam' : 'sim')} />
+            {src === 'webcam' && <Segmented options={['Front camera', 'Back camera'] as const} value={facing === 'user' ? 'Front camera' : 'Back camera'} onChange={(v) => setFacing(v === 'Front camera' ? 'user' : 'environment')} />}
             <Card className="!p-3.5 text-[13px]"><b>How to set up:</b> {def.camera}</Card>
             <Button full size="lg" variant="teal" icon={<Play size={18} />} onClick={begin} disabled={src === 'webcam' && status.phase !== 'running'}>{ready || src === 'sim' ? 'Start' : 'Start anyway'}</Button>
             <Button full variant="ghost" onClick={() => setMode('detail')}>Cancel</Button>

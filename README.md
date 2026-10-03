@@ -32,7 +32,7 @@ The app uses hash routing (`#/physio`), so deep links work on Pages without serv
 
 ## What you see when you open the link
 
-The first screen offers two choices: **Doctor / Physiotherapist** (opens the clinic workspace dashboard) and **Patient** (opens the patient app as the demo patient, Priya). There is no login gate. Smaller links under the choices cover clinic sign-in/registration and "join with an invite code".
+The first screen offers two choices: **Doctor / Physiotherapist** (opens the clinic workspace dashboard) and **Patient** (opens the patient app as the demo patient, Abdul). There is no login gate. Smaller links under the choices cover clinic sign-in/registration and "join with an invite code".
 
 The patient app is built for phones: full screen with a bottom tab bar. On tablets and desktops it switches to a side navigation rail with a centred content column. There is no device frame.
 

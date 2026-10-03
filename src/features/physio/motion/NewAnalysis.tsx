@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { Camera, Check, ChevronRight, FlipHorizontal, Info, RotateCcw, ShieldCheck, Square, Upload, Wand2, X } from 'lucide-react'
+import { Camera, Check, ChevronRight, FlipHorizontal, Info, RotateCcw, ShieldCheck, Square, Upload, Wand2, X, SwitchCamera } from 'lucide-react'
 import { Badge, Button, Card, Field, Notice, PageHeader, Segmented, Select, toast } from '../../../components/ui'
 import { cn, round } from '../../../lib/utils'
 import { useStore } from '../../../store'
@@ -44,6 +44,7 @@ export default function NewAnalysis() {
   const [model, setModel] = useState<ModelKind>('lite')
   const [mirror, setMirror] = useState(true)
   const [deviceId, setDeviceId] = useState<string | undefined>()
+  const [facing, setFacing] = useState<'user' | 'environment'>('user')
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
   const [status, setStatus] = useState<StageStatus>({ phase: 'idle', fps: 0, infMs: 0 })
 
@@ -138,7 +139,7 @@ export default function NewAnalysis() {
   const catMoves = MOVEMENTS.filter((m) => m.category === category)
   const history = useMemo(() => motions.filter((m) => m.patientId === patientId), [motions, patientId])
 
-  const source: StageSource = src === 'webcam' ? { kind: 'webcam', deviceId } : src === 'sim' ? { kind: 'sim', def, side } : { kind: 'file', url: fileUrl ?? '' }
+  const source: StageSource = src === 'webcam' ? { kind: 'webcam', deviceId, facing } : src === 'sim' ? { kind: 'sim', def, side } : { kind: 'file', url: fileUrl ?? '' }
   const focus: Focus[] | undefined = def.kind === 'rom' && def.joint ? (side === 'Both' ? [{ joint: def.joint, side: 'L' }, { joint: def.joint, side: 'R' }] : [{ joint: def.joint, side: side === 'Left' ? 'L' : 'R' }])
     : def.kind === 'squat' || def.kind === 'sts' ? [{ joint: 'knee', side: 'L' }, { joint: 'knee', side: 'R' }] : undefined
 
@@ -269,6 +270,7 @@ export default function NewAnalysis() {
             {step === 1 && src === 'webcam' && (
               <div className="flex flex-wrap items-center gap-2">
                 <Button size="sm" variant="secondary" icon={<FlipHorizontal size={15} />} onClick={() => setMirror((m) => !m)}>Mirror {mirror ? 'on' : 'off'}</Button>
+                <Button size="sm" variant="secondary" icon={<SwitchCamera size={15} />} onClick={() => { setDeviceId(undefined); setFacing((f) => (f === 'user' ? 'environment' : 'user')) }}>{facing === 'user' ? 'Front camera' : 'Back camera'}</Button>
                 {devices.length > 1 && (
                   <Select value={deviceId ?? ''} onChange={(e) => setDeviceId(e.target.value || undefined)} className="!h-9 !w-auto max-w-[220px] !rounded-lg text-[13px]" aria-label="Camera">
                     <option value="">Default camera</option>

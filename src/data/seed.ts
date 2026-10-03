@@ -56,7 +56,7 @@ const mh = (o: Partial<MedicalHistory> = {}): MedicalHistory => ({
 })
 
 const staff: Staff[] = [
-  { id: 's1', name: 'Dr. Ananya Rao', role: 'Senior Physiotherapist', speciality: 'Orthopaedic & Sports', verified: true, active: true, phone: '+91 98200 11001', hours: 'Mon-Sat 9:00-17:00', workDays: [1,2,3,4,5,6], start: '09:00', end: '17:00' },
+  { id: 's1', name: 'Dr. Mohammed Abdul Rasheed', role: 'Senior Physiotherapist', speciality: 'Orthopaedic & Sports', verified: true, active: true, phone: '+91 98200 11001', hours: 'Mon-Sat 9:00-17:00', workDays: [1,2,3,4,5,6], start: '09:00', end: '17:00' },
   { id: 's2', name: 'Dr. Karan Mehta', role: 'Physiotherapist', speciality: 'Neurological Rehabilitation', verified: true, active: true, phone: '+91 98200 11002', hours: 'Mon-Fri 10:00-18:00', workDays: [1,2,3,4,5], start: '10:00', end: '18:00' },
   { id: 's3', name: 'Dr. Sneha Iyer', role: 'Physiotherapist', speciality: 'Geriatric & Spine', verified: true, active: true, phone: '+91 98200 11003', hours: 'Mon-Sat 9:00-15:00', workDays: [1,2,3,4,5,6], start: '09:00', end: '15:00' },
   { id: 's4', name: 'Dr. Vikram Shah', role: 'Orthopaedic Doctor', speciality: 'Joint replacement', verified: true, active: true, phone: '+91 98200 11004', hours: 'Tue/Thu 14:00-17:00', workDays: [2,4], start: '14:00', end: '17:00' },
@@ -72,7 +72,7 @@ interface PSpec {
   invite?: Patient['invite']
 }
 const specs: PSpec[] = [
-  { id: 'p1', name: 'Priya Sharma', age: 54, sex: 'Female', cond: 'Right total knee replacement (post-op)', region: 'Knee', side: 'Right', th: 's1', regDays: -38, ref: 'Dr. Vikram Shah (Orthopaedics)', ep: 'Post-op right TKR rehabilitation',
+  { id: 'p1', name: 'Mohammed Abdul Samad', age: 54, sex: 'Male', cond: 'Right total knee replacement (post-op)', region: 'Knee', side: 'Right', th: 's1', regDays: -38, ref: 'Dr. Vikram Shah (Orthopaedics)', ep: 'Post-op right TKR rehabilitation',
     hist: { diabetes: { has: true, type: 'Type 2', duration: '6 years', meds: 'Metformin 500 mg', precautions: 'Check blood sugar before exercise; carry glucose.' }, hypertension: true, surgeries: 'Right TKR (38 days ago); Hysterectomy (2014)', medications: 'Metformin, Amlodipine 5 mg, Aspirin 75 mg', allergies: 'Penicillin (rash)', imaging: 'Post-op knee X-ray: implant well positioned', redFlags: 'Monitor calf swelling/tenderness (DVT risk)', contraindications: 'No passive forced flexion beyond 120° until week 12', notes: 'Motivated; lives with daughter; 2 flights of stairs at home.' },
     invite: { code: 'GP-1001', status: 'accepted' } },
   { id: 'p2', name: 'Arjun Malhotra', age: 28, sex: 'Male', cond: 'ACL reconstruction (left knee)', region: 'Knee', side: 'Left', th: 's1', regDays: -52, ref: 'Dr. Vikram Shah (Orthopaedics)', ep: 'ACL reconstruction rehab, phase 2',
@@ -321,7 +321,7 @@ function mkRom(o: {
     observations: [gap <= 0 ? `Reached the goal of ${def.target}${def.unit}.` : `${round(gap)}${def.unit} below the ${def.target}${def.unit} goal. Continue range-focused work.`],
     warnings: q < 70 ? ['Tracking confidence was low for part of the capture.'] : [],
     series, seriesLabel: `${def.region} angle (°)`, status: o.status, manualValue: o.manual, annotation: o.annotation,
-    reviewedBy: o.status === 'pending' ? undefined : (o.reviewer ?? 'Dr. Ananya Rao'), visibleToPatient: o.visible ?? o.status === 'approved', isBaseline: o.baseline,
+    reviewedBy: o.status === 'pending' ? undefined : (o.reviewer ?? 'Dr. Mohammed Abdul Rasheed'), visibleToPatient: o.visible ?? o.status === 'approved', isBaseline: o.baseline,
   }
 }
 
@@ -339,18 +339,18 @@ const motions: MotionResult[] = [
 ]
 
 const messages: Message[] = [
-  { id: 'ms1', patientId: 'p1', from: 'clinic', text: 'Hi Priya, great progress this week! Your knee flexion is now over 100°. Keep up the heel slides.', at: at(-4, '18:30') },
+  { id: 'ms1', patientId: 'p1', from: 'clinic', text: 'Hi Abdul, great progress this week! Your knee flexion is now over 100°. Keep up the heel slides.', at: at(-4, '18:30') },
   { id: 'ms2', patientId: 'p1', from: 'patient', text: 'Thank you doctor! Is it okay to use the stairs without the rail?', at: at(-4, '19:02') },
   { id: 'ms3', patientId: 'p1', from: 'clinic', text: 'Please keep using the rail for 2 more weeks. We will test stairs together in clinic.', at: at(-3, '09:15') },
 ]
 
 const notices: Notice[] = [
-  { id: 'n1', audience: 'patient', patientId: 'p1', kind: 'appointment', title: 'Appointment today', body: 'Follow-up session at 10:30 AM with Dr. Ananya Rao.', at: at(0, '07:00'), read: false },
+  { id: 'n1', audience: 'patient', patientId: 'p1', kind: 'appointment', title: 'Appointment today', body: 'Follow-up session at 10:30 AM with Dr. Mohammed Abdul Rasheed.', at: at(0, '07:00'), read: false },
   { id: 'n2', audience: 'patient', patientId: 'p1', kind: 'exercise', title: 'Exercise reminder', body: 'You still have 2 exercises to complete today.', at: at(0, '17:00'), read: false },
   { id: 'n3', audience: 'patient', patientId: 'p1', kind: 'recovery', title: 'New progress update', body: 'Your therapist approved a new motion analysis: knee flexion 101°.', at: at(-4, '12:10'), read: true },
   { id: 'n4', audience: 'patient', patientId: 'p1', kind: 'payment', title: 'Payment reminder', body: 'Outstanding balance of ₹5,000 for your TKR package.', at: at(-2, '10:00'), read: true },
   { id: 'n5', audience: 'physio', kind: 'alert', title: 'Low exercise adherence', body: 'Rahul Verma has not logged exercises for 6 days.', at: at(0, '08:00'), read: false },
-  { id: 'n6', audience: 'physio', kind: 'ai', title: 'Motion analysis awaiting review', body: 'Priya Sharma: knee flexion (home session).', at: at(-1, '20:00'), read: false },
+  { id: 'n6', audience: 'physio', kind: 'ai', title: 'Motion analysis awaiting review', body: 'Mohammed Abdul Samad: knee flexion (home session).', at: at(-1, '20:00'), read: false },
   { id: 'n7', audience: 'physio', kind: 'appointment', title: 'Cancelled appointment', body: 'Sunita Patil cancelled the 3:30 PM reassessment.', at: at(0, '08:45'), read: false },
   { id: 'n8', audience: 'all', kind: 'announcement', title: 'Clinic closed Sunday', body: 'GearPhys Pune will be closed this Sunday for maintenance.', at: at(-2, '09:00'), read: true },
 ]
@@ -364,7 +364,7 @@ const requests: PatientRequest[] = [
 const audit: AuditEntry[] = [
   { id: 'au1', at: at(0, '09:05'), who: 'Meera Nair', action: 'Marked Arjun Malhotra present (09:00)' },
   { id: 'au2', at: at(0, '08:40'), who: 'Meera Nair', action: 'Added Kabir Singh to the waiting list' },
-  { id: 'au3', at: at(-1, '17:45'), who: 'Dr. Ananya Rao', action: 'Approved motion analysis for Priya Sharma (knee flexion 101°)' },
+  { id: 'au3', at: at(-1, '17:45'), who: 'Dr. Mohammed Abdul Rasheed', action: 'Approved motion analysis for Mohammed Abdul Samad (knee flexion 101°)' },
   { id: 'au4', at: at(-1, '16:20'), who: 'Rohit Kulkarni', action: 'Recorded payment ₹3,000 (UPI) for Fatima Sheikh' },
   { id: 'au5', at: at(-1, '14:00'), who: 'Meera Nair', action: 'Registered new patient Deepak Joshi and sent invite GP-4821' },
   { id: 'au6', at: at(-2, '11:10'), who: 'Dr. Karan Mehta', action: 'Finalised session note #12 for Sunita Patil' },
@@ -372,13 +372,13 @@ const audit: AuditEntry[] = [
 ]
 
 const drafts: DraftNote[] = [
-  { id: 'dr1', patientId: 'p1', kind: 'SOAP note', at: at(-4, '11:40'), status: 'approved', signedBy: 'Dr. Ananya Rao', shared: false,
+  { id: 'dr1', patientId: 'p1', kind: 'SOAP note', at: at(-4, '11:40'), status: 'approved', signedBy: 'Dr. Mohammed Abdul Rasheed', shared: false,
     text: 'S: Patient reports reduced pain (4/10 before, 2/10 after). Able to climb stairs with rail.\nO: Right knee flexion 101° (AI estimate, therapist-approved). Extension -3°. Mild effusion.\nA: Progressing as expected post right TKR; flexion goal 110° approaching.\nP: Continue strengthening, add mini squats; reassess in 1 week.' },
 ]
 
 drafts.push({
-  id: 'dr2', patientId: 'p1', kind: 'Progress report', at: at(-4, '12:00'), status: 'approved', signedBy: 'Dr. Ananya Rao', shared: true,
-  text: 'Priya, you are progressing well after your knee replacement.\n• Your knee now bends to about 101° (it was 62° at the start). Our goal is 110°.\n• Pain before treatment has come down from 8/10 to 4/10.\n• You are doing about 8 out of 10 of your home exercises. Keep this up.\nNext: we will add mini squats and test your stairs together in clinic.',
+  id: 'dr2', patientId: 'p1', kind: 'Progress report', at: at(-4, '12:00'), status: 'approved', signedBy: 'Dr. Mohammed Abdul Rasheed', shared: true,
+  text: 'Abdul, you are progressing well after your knee replacement.\n• Your knee now bends to about 101° (it was 62° at the start). Our goal is 110°.\n• Pain before treatment has come down from 8/10 to 4/10.\n• You are doing about 8 out of 10 of your home exercises. Keep this up.\nNext: we will add mini squats and test your stairs together in clinic.',
 })
 
 const announcements: Announcement[] = [

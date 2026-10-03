@@ -45,7 +45,7 @@ export default function ClinicWelcome() {
               <Field label="Password"><Input type="password" placeholder="••••••••" /></Field>
               <p className="text-xs text-muted">Prototype: choose a demo account to continue.</p>
               <div className="grid gap-2">
-                <Button full variant="primary" icon={<Stethoscope size={16} />} onClick={() => enter('physio')}>Physiotherapist (Dr. Ananya Rao)</Button>
+                <Button full variant="primary" icon={<Stethoscope size={16} />} onClick={() => enter('physio')}>Physiotherapist (Dr. Mohammed Abdul Rasheed)</Button>
                 <Button full variant="soft" icon={<Building2 size={16} />} onClick={() => enter('owner')}>Clinic owner (Rohit Kulkarni)</Button>
                 <Button full variant="soft" icon={<KeyRound size={16} />} onClick={() => enter('receptionist')}>Receptionist (Meera Nair)</Button>
               </div>
