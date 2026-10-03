@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* GearPhys brand: clinical blue + calming teal, taken from the logo */
+  --color-brand-50: #eef6fd;
+  --color-brand-100: #d9eafa;
+  --color-brand-200: #b8d8f5;
+  --color-brand-300: #86bdee;
+  --color-brand-400: #4f9ce3;
+  --color-brand-500: #2a80d2;
+  --color-brand-600: #1a68b5;
+  --color-brand-700: #15548f;
+  --color-brand-800: #134270;
+  --color-brand-900: #0f2e4f;
+
+  --color-teal-50: #e8f8f8;
+  --color-teal-100: #c8eeef;
+  --color-teal-400: #35bcc0;
+  --color-teal-500: #14a3a8;
+  --color-teal-600: #0e868c;
+  --color-teal-700: #0c6b70;
+
+  --color-ink: #0f2236;
+  --color-muted: #5b6e82;
+  --color-line: #e1e9f2;
+  --color-surface: #f4f8fc;
+
+  --color-ok: #1f9d6b;
+  --color-warn: #d98e04;
+  --color-bad: #d64545;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* { box-sizing: border-box; }
+/* Let grid/flex children shrink so long text truncates instead of widening the page on phones */
+.grid > *, .flex-1 { min-width: 0; }
+button { font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+/* Nice thin scrollbars on desktop */
+@media (hover: hover) {
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: #c9d6e4; border-radius: 8px; }
+}
+
+.safe-bottom { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fade-up { animation: fadeUp .35s ease both; }
+@keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(20,163,168,.45); } 100% { box-shadow: 0 0 0 14px rgba(20,163,168,0); } }
+.pulse-ring { animation: pulseRing 1.6s infinite; }
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: none; } }
+.sheet-up { animation: sheetUp .28s cubic-bezier(.2,.8,.2,1) both; }
+
+/* Printable reports */
+@media print {
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .print-area { box-shadow: none !important; border: none !important; }
+}
