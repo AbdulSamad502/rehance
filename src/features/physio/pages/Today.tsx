@@ -14,7 +14,7 @@ export default function Today() {
   const role = db.ui.physioRole
   const k = clinicKpis(db)
   const clinical = canSee(role, 'clinical')
-  const first = ACTORS[role].replace('Dr. ', '').split(' ')[0]
+  const first = ACTORS[role].replace(' (Reception)', '')
   const hour = new Date().getHours()
   const hello = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening'
 
